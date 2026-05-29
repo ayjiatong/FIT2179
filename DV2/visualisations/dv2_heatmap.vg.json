@@ -1,0 +1,56 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {"text": "Monthly Tourist Arrivals to Malaysia (2020 - 2024)"},
+    "width": 400,
+    "height": 300,
+    "data": {
+        "url": "https://raw.githubusercontent.com/ayjiatong/FIT2179/refs/heads/main/DV2/data/MY_montharr_ns.csv",
+        "format": {
+            "type": "csv",
+            "parse": {
+                "date": "date",
+                "arrivals": "number"
+            }
+        }
+    },
+    "transform": [
+        {
+            "calculate": "year(datum.date)",
+            "as": "year"
+        },
+        {
+            "calculate": "month(datum.date) + 1",
+            "as": "month"
+        }
+    ],
+    "mark": {
+        "type": "rect",
+        "stroke": "white"
+    },
+    "encoding": {
+        "x": {
+            "field": "month",
+            "type": "ordinal",
+            "title": "Month"
+        },
+        "y": {
+            "field": "year",
+            "type": "ordinal",
+            "title": "Year"
+        },
+        "color": {
+            "aggregate": "sum",
+            "field": "arrivals",
+            "type": "quantitative",
+            "title": "Tourist Arrivals",
+            "scale": {
+                "scheme": "greens"
+            }
+        },
+        "tooltip": [
+            {"field": "year", "type": "ordinal", "title": "Year"},
+            {"field": "month", "type": "ordinal", "title": "Month"},
+            {"aggregate": "sum", "field": "arrivals", "type": "quantitative"}
+        ]
+    }
+}
