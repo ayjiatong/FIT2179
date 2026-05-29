@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Vega & Vega-Lite -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="dv2.css">
+    <script src="dv2.js"></script>
+
+    <title>Tourism in Malaysia</title>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Header - for title -->
+        <div class="header">
+            <h1>Uncovering Tourism Behaviour in Malaysia</h1>
+            <div class="subtitle">Exploring tourist arrivals, state trends, gender patterns & flight connectivity (2020-2024).</div>
+        </div>
+
+        <!-- Section 1: Geographic Overview -->
+        <div class="section">
+            <div class="section-title">Geographic Overview</div>
+            <div class="section-desc">
+                Malaysia attracts many international tourists. Known for its cultural diversity, modern infrastructure,
+                and tropical landscape, Malaysia offers a unique blend of Malay, Chinese, and Indian
+                influences. Tourism is a vital economic sector, contributing significantly to GDP and 
+                employment. This section provides geographic information showing where tourists originate and
+                where do they enter from.
+            </div>
+            <div class="chart-grid" style="display: flex; flex-direction: column; gap: 2rem; align-items: center;">
+                <div class="chart-card">
+                    <h3>Where do tourists come from?</h3>
+                    <div id="choropleth-world-map"></div>
+                    <div class="annotation">Most tourists came from neighbouring countries.</div>
+                </div>
+                <div class="chart-card">
+                    <h3>Where do tourists go in Malaysia?</h3>
+                    <div id="choropleth-malaysia-map"></div>
+                    <div class="annotation">Johor and Selangor (KL) are an obvious entry point for tourists.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Trend of world tourism -->
+         <div class="section">
+            <div class="section-title">Trend of World Tourist</div>
+            <div class="section-desc">International tourist arrivals to Malaysia have fluctuated significantly over years,
+                influenced by global events and economic conditions. This section presents trends of tourists that had visited
+                Malaysia.
+            </div>
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>The countries powering Malaysia's Tourism Industry</h3>
+                    <div id="horizontal-bar-chart"></div>
+                    <div class="annotation">Singapore dominates tourist arrivals to Malaysia.</div>
+                </div>
+                <div class="chart-card">
+                    <h3>Tourism trends among Malaysia's top visitors</h3>
+                    <div id="multi-line-chart"></div>
+                    <div class="annotation">Amount of tourist increased the most between 2022 and 2023.</div>
+                </div>
+                <div class="chart-card">
+                    <h3>The Seasonal Pulse of Malaysia Tourism</h3>
+                    <div id="heatmap"></div>
+                    <div class="annotation">December and July are consistently peak travel months, while April 2020 reflects the sharp collapse due to COVID-19 pandemic.</div>
+                </div>
+                <div class="chart-card">
+                    <h3>Continental view of where Malaysia's tourists come from</h3>
+                    <div id="donut-chart"></div>
+                    <div class="annotation">Asia clearly dominates tourists arrivals in Malaysia, contributing the largest share compared to other continents.<div>
+                </div>
+            </div>
+         </div>
+
+         <!-- Section 3: Trend of States -->
+          <div class="section">
+            <div class="section-title">Trend of Tourist for States in Malaysia</div>
+            <div class="section-desc">
+                Each states in Malaysia has distinct attractions and infrastructure that results in different
+                volumes of visitors. This section shares the patterns of tourists that came into Malaysia from
+                different states.
+            </div>
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Which states attracts the most tourists in Malaysia?</h3>
+                    <div id="bubble-chart"></div>
+                    <div class="annotation">Johor emerges as the dominant tourism state, largely driven by strong inflows from neighbouring country Singapore which was Malaysia's top tourism contribution.</div>
+                </div>
+                <div class="chart-card">
+                    <h3>How Malaysia's top tourism states recover?</h3>
+                    <div id="dumbbell-chart"></div>
+                    <div class="annotation">Johor and Selangor (KL) shows a strong recovery from COVID-19 pandemic in tourism, with a large increase in number of tourists.</div>
+                </div>
+            </div>
+          </div>
+
+        <!-- Section 4: Gender in Tourism -->
+        <div class="section">
+            <div class="section-title">Gender in Tourism</div>
+            <div class="section-desc">
+                The gender composition of tourists can reveal underlying travel purposes, such as business, leisure, or 
+                family visits. This section explores the relationship between tourism and gender.
+            </div>
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Gender composition of Malaysia Tourism</h3>
+                    <div id="stacked-bar-chart"></div>
+                    <div class="annotation">Gender distributions remains fairly consistent over states - no clear dominance of either group.</div>
+                </div>
+                <div class="chart-card">
+                    <h3>Does tourism volume affect gender imbalance?</h3>
+                    <div id="scatter-plot"></div>
+                    <div class="annotation">For countries with large number of tourists, gender imbalance is not that obvious compared to countries with smaller number of tourists.</div>
+                    </div>
+             </div>
+          </div>
+
+        <!-- Section 5: Flight Impact on Tourism -->
+        <div class="section">
+            <div class="section-title">Flight Impact on Tourism</div>
+            <div class="section-desc">
+                Air travel is the primary mode of entry for most international tourists to Malaysia. This section understands how flight affects tourism in Malaysia.
+            </div>
+            <div class="chart-grid>">
+                <div class="chart-card full-width">
+                    <h3>How air connectivity shapes tourism in Malaysia.</h3>
+                    <div id="slope-chart"></div>
+                    <div class="annotation">This slope chart shows difference between number of inbound flights and outbound flights for different international airports in Malaysia. This indicates a balanced air travel flow.</div>
+                    </div>
+             </div>
+          </div>
+        </div>
+        
+        <!-- Data Sources Indication -->
+        <div class="footer">
+            FIT2179 Visualisation 2 | Author: Au Yoong Jia Tong | Student ID: 36063908<br><br>
+            <div class="data-source">
+                Data Sources:<br>
+                Tourist Arrivals Data: Malaysia Immigration Department (data.gov.my) - Monthly arrivals by country, state of entry, and gender (2020-2024)<br>
+                Flight Inbound and Outbound Data: GitHub - clkride <br><br>
+
+                Other Sources:<br>
+                World Map json: JSDELIVR<br>
+                Malaysia Map gepjson: GitHub - mptaktusolat<br>
+                Country ISO Code with Country Full Name: GitHub - lukes<br>
+                Country Code with Continent: GitHub - stevewithington
+            </div> 
+        </div>
+    
+</body>
+
+</html>

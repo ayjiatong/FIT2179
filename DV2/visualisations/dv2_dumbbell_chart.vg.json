@@ -1,0 +1,54 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {"text": "Tourist Arrivals for Top 3 States (2020 VS 2024)"},
+    "width": 400,
+    "height": 300,
+    "data": {
+        "url": "https://raw.githubusercontent.com/ayjiatong/FIT2179/refs/heads/main/DV2/data/MY_montharr_states_ns.csv",
+        "format": {
+            "type": "csv"
+        }
+    },
+    "transform": [
+        {
+            "calculate": "year(toDate(datum.date))",
+            "as": "year"
+        },
+        {"filter": "datum.year == 2020 || datum.year == 2024"},
+        {"filter": "datum.soe == 'Johor' || datum.soe == 'Selangor' || datum.soe == 'Sarawak'"},
+        {
+            "aggregate": [
+                {"op": "sum", "field": "arrivals", "as": "total_arrivals"}
+            ],
+            "groupby": ["soe", "year"]
+        }
+    ],
+    "layer": [
+        {
+            "mark": {
+                "type": "rule"
+            },
+            "encoding": {
+                "y": {"field": "soe", "type": "nominal"},
+                "x": {"field": "total_arrivals", "type": "quantitative"},
+                "detail": {"field": "soe"}
+            }
+        },
+        {
+            "mark": {
+                "type": "circle",
+                "size": 120
+            },
+            "encoding": {
+                "y": {"field": "soe", "type": "nominal"},
+                "x": {"field": "total_arrivals", "type": "quantitative"},
+                "color": {"field": "year", "type": "nominal"},
+                "tooltip": [
+                    {"field": "soe", "type": "nominal"},
+                    {"field": "year", "type": "ordinal"},
+                    {"field": "total_arrivals", "type": "quantitative"}
+                ]
+            }
+        }
+    ]
+}
