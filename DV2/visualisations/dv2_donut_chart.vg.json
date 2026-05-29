@@ -1,0 +1,51 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {"text": "Tourist Arrivals grouped by Continent (2024)"},
+    "width": 400,
+    "height": 300,
+    "data": {
+        "url": "https://raw.githubusercontent.com/ayjiatong/FIT2179/refs/heads/main/DV2/data/MY_montharr_ns.csv",
+        "format": {"type": "csv"}
+    },
+    "transform": [
+        {
+            "lookup": "country",
+            "from": {
+                "data": {
+                    "url": "https://gist.githubusercontent.com/stevewithington/20a69c0b6d2ff846ea5d35e5fc47f26c/raw/13716ceb2f22b5643ce5e7039643c86a0e0c6da6/country-and-continent-codes-list-csv.csv"
+                },
+                "key": "Three_Letter_Country_Code",
+                "fields": ["Continent_Name"]
+            }
+        },
+        {"filter": "datum.Continent_Name != null && datum.Continent_Name != ''"},
+        {"aggregate": [
+            {"op": "sum", "field": "arrivals", "as": "total"}
+        ],
+        "groupby": ["Continent_Name"]
+      }
+    ],
+    "mark": {
+        "type": "arc",
+        "innerRadius": 90,
+        "stroke": "white"
+    },
+    "encoding": {
+        "theta": {
+            "field": "total",
+            "type":"quantitative"
+        },
+        "color": {
+            "field": "Continent_Name",
+            "type": "nominal",
+            "scale": {
+                "scheme": "set2"
+            },
+            "title": "Continent"
+        },
+        "tooltip": [
+            {"field": "Continent_Name", "type": "ordinal", "title": "Continent"},
+            {"field": "total", "type": "quantitative", "title": "Total Arrivals"}
+        ]
+    }
+}
