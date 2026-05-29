@@ -36,7 +36,7 @@
         },
     "tooltip": [
         {"field": "properties.name", "type": "nominal", "title": "Country"},
-        {"field": "arrivals", "type": "quantitative", "title": "Total Arrivals"}
+        {"field": "arrivals", "type": "quantitative", "title": "Total Arrivals (2024)"}
     ]
   }
 }
